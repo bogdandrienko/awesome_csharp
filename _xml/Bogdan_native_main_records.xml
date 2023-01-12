@@ -1,0 +1,468 @@
+<?xml 
+	version="1.0"
+	encoding="windows-1251"
+?>
+
+<XRTL
+	version="1.0"
+	title="[в разработке] основные записи самосвалы"
+>
+<Resources>
+	<Database
+		username="dispatcher"
+		password="disp"
+		provider="MSDAORA"
+		data_source="pitEservice"
+	/>
+    
+	<Parameters>
+	
+		<Parameter 
+			caption="Дата начала:" 
+			name="ParamDateFrom" 
+			type="DATE" 
+			control_type="ComboBox"  
+			default_query = "DatesBegin" 
+			item_query = "DatesBegin"
+		/>
+			
+		<Parameter 
+			caption="Смена начала:" 
+			name="ParamShiftFrom" 
+			type="BSTR" 
+			control_type="ComboBox"  
+			default_query = "ShiftsFrom" 
+			item_query = "ShiftsFrom"
+		/>
+		
+		<Parameter 
+			caption="Дата окончания:" 
+			name="ParamDateTo" 
+			type="DATE" 
+			control_type="ComboBox"  
+			default_query = "DatesEnd" 
+			item_query = "DatesEnd"
+		/>
+			
+		<Parameter 
+			caption="Смена окончания:" 
+			name="ParamShiftTo" 
+			type="BSTR" 
+			control_type="ComboBox"  
+			default_query = "ShiftsTo" 
+			item_query = "ShiftsTo"
+		/>
+		
+		<Parameter 
+			caption="Тип:" 
+			name="ParamType" 
+			type="BSTR" 
+			control_type="ComboBox" 
+			default = "Вся техника" 
+			items = "Вся техника|Самосвалы|Бульдозеры|Экскаваторы"
+		/>  
+		
+    </Parameters>
+		
+	<Queries>
+		<Query 
+			name = "DatesBegin"
+		> 
+			select to_char( sysdate, 'dd.mm.yyyy') ParamDateFrom from dual
+			union all 
+			select to_char( sysdate-1, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-2, 'dd.mm.yyyy') ParamDate from dual			
+			union all 
+			select to_char( sysdate-3, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-4, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-5, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-6, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-7, 'dd.mm.yyyy') ParamDate from dual
+		</Query>
+		
+		<Query
+			name = "DatesEnd"
+		> 
+			select to_char( sysdate, 'dd.mm.yyyy') ParamDateTo from dual
+			union all 
+			select to_char( sysdate-1, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-2, 'dd.mm.yyyy') ParamDate from dual			
+			union all 
+			select to_char( sysdate-3, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-4, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-5, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-6, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-7, 'dd.mm.yyyy') ParamDate from dual
+		</Query>
+		
+		<Query
+			name = "ShiftsFrom"
+		> 
+			select 1 ParamShiftFrom from dual
+			union all
+			select 2 from dual
+		</Query>
+
+		<Query
+			name = "ShiftsTo"
+		> 
+			select 1 ParamShiftTo from dual
+			union all
+			select 2 from dual
+		</Query>				
+
+		<Query
+			name = "Header"
+			auto_open = "true"
+		> 
+			select 
+				'Записи за период '|| to_char(:ParamDateFrom,'dd.mm.yyyy')||' ' ||:ParamShiftFrom||' смены по '|| to_char(:ParamDateTo,'dd.mm.yyyy')||' '|| :ParamShiftTo||' смену' 
+					title 
+				from dual; 
+		</Query>
+			
+		<Query
+			name="GetQuery1"
+		>
+
+select
+	1 as KOL
+    ,'Самосвалы' as TYPE_TABLE
+    ,MESCOUNTER as EVENTCOUNTER
+    ,VEHID as ID
+    ,TIME
+    ,GMTTIME
+    ,X
+    ,Y
+    ,WEIGHT
+    ,FUEL
+    ,SPEED
+    ,INCLINATION
+    ,HEALTHSTATUS
+    --,TIMESYSTEM
+    ,EVENTTYPE
+    ,VEHTYPE
+    ,VEHCODE
+    ,MESNUMBER
+    ,MOTOHOURS
+    ,EVENTGROUP
+    ,EVENTCODE
+    ,EVENTDESCR
+
+from 
+    DISPATCHER.EVENTSTATEARCHIVE
+
+where 
+    (:ParamType = 'Самосвалы' or :ParamType = 'Вся техника')
+    and TIME between dispatcher.GetPredefinedTimeFrom('за указанную смену', :ParamShiftFrom, :ParamDateFrom) and dispatcher.GetPredefinedTimeTo('за указанную смену', :ParamShiftTo, :ParamDateTo)
+
+
+
+union all
+
+
+
+select
+	1 as KOL
+    ,'Бульдозеры' as TYPE_TABLE
+    ,EVENTCOUNTER
+    ,AUXID as ID
+    ,TIME
+    ,GMTTIME
+    ,X
+    ,Y
+    ,0 WEIGHT
+    ,FUEL
+    ,SPEED
+    ,INCLINATION
+    ,0 HEALTHSTATUS
+    --,'' TIMESYSTEM
+    ,EVENTTYPE
+    ,'' VEHTYPE
+    ,0 VEHCODE
+    ,0 MESNUMBER
+    ,0 MOTOHOURS
+    ,0 EVENTGROUP
+    ,0 EVENTCODE
+    ,'' EVENTDESCR
+
+from 
+    DISPATCHER.AUXEVENTARCHIVE
+
+where 
+    (:ParamType = 'Бульдозеры' or :ParamType = 'Вся техника')
+    and TIME between dispatcher.GetPredefinedTimeFrom('за указанную смену', :ParamShiftFrom, :ParamDateFrom) and dispatcher.GetPredefinedTimeTo('за указанную смену', :ParamShiftTo, :ParamDateTo)
+
+
+union all
+
+
+
+select
+	1 as KOL
+    ,'Экскаваторы' as TYPE_TABLE
+    ,EVENTCOUNTER
+    ,SHOVID as ID
+    ,TIME
+    ,GMTTIME
+    ,X
+    ,Y
+    ,0 WEIGHT
+    ,FUEL
+    ,SPEED
+    ,0 INCLINATION
+    ,0 HEALTHSTATUS
+    --,'' TIMESYSTEM
+    ,EVENTTYPE
+    ,'' VEHTYPE
+    ,0 VEHCODE
+    ,0 MESNUMBER
+    ,0 MOTOHOURS
+    ,0 EVENTGROUP
+    ,0 EVENTCODE
+    ,'' EVENTDESCR
+
+from 
+    DISPATCHER.SHOVEVENTSTATEARCHIVE
+
+where 
+    (:ParamType = 'Экскаваторы' or :ParamType = 'Вся техника')
+    and TIME between dispatcher.GetPredefinedTimeFrom('за указанную смену', :ParamShiftFrom, :ParamDateFrom) and dispatcher.GetPredefinedTimeTo('за указанную смену', :ParamShiftTo, :ParamDateTo)
+
+
+
+order by 
+    TIME desc
+
+      
+		</Query>
+		
+	</Queries>
+		
+	<ResourceFiles>
+		<ResourceFile
+			file="Modules\Vist.ExGridControl.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.Printing.v18.1.Core.dll"
+		/>
+		<ResourceFile
+			file="Modules\DevExpress.Utils.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraEditors.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraGrid.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.Data.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraLayout.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraBars.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraTreeList.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraPrinting.v18.1.dll"
+		/>			
+		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Data.v18.1.resources.dll"
+		/>		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraGrid.v18.1.resources.dll"
+		/>		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraLayout.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraEditors.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Utils.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Printing.v18.1.Core.resources.dll"
+		/>
+	</ResourceFiles>
+		
+</Resources>
+		
+<Window 
+	caption="Тест проверка последней записи"
+	width="800"
+	height="400"
+>
+	<Object
+		class="Vist.ExGridControl"
+		file="Modules\Vist.ExGridControl.dll"
+		header_query="Header"
+		read_only="true"
+		query="GetQuery1"
+		best_fit="true"
+		save_page_settings="true"
+		page_settings_guid="GetQuery1_guid"
+	>
+
+		<Column
+			title="Кол"
+			field="KOL"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TYPE_TABLE"
+			field="TYPE_TABLE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="MESCOUNTER"
+			field="MESCOUNTER"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="VEHID"
+			field="VEHID"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIME"
+			field="TIME"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="GMTTIME"
+			field="GMTTIME"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="X"
+			field="X"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="Y"
+			field="Y"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="WEIGHT"
+			field="WEIGHT"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="FUEL"
+			field="FUEL"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="SPEED"
+			field="SPEED"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="INCLINATION"
+			field="INCLINATION"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="HEALTHSTATUS"
+			field="HEALTHSTATUS"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIMESYSTEM"
+			field="TIMESYSTEM"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="EVENTTYPE"
+			field="EVENTTYPE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="VEHTYPE"
+			field="VEHTYPE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="VEHCODE"
+			field="VEHCODE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="MESNUMBER"
+			field="MESNUMBER"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="MOTOHOURS"
+			field="MOTOHOURS"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="EVENTGROUP"
+			field="EVENTGROUP"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="EVENTCODE"
+			field="EVENTCODE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="EVENTDESCR"
+			field="EVENTDESCR"
+			width="100"
+			visible="true"
+		/>
+
+
+		
+		<GroupSummary
+			type="sum"
+			field="KOL"
+			format="Сумма: {0:N0}"
+		/>
+		
+	</Object>
+</Window>
+	<Reports>
+	...
+	</Reports>
+</XRTL>

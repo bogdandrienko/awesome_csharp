@@ -1,0 +1,367 @@
+<?xml 
+	version="1.0"
+	encoding="windows-1251"
+?>
+
+<XRTL
+	version="1.0"
+	title="Простои внесённые автоматически"
+>
+<Resources>
+	<Database
+		username="dispatcher"
+		password="disp"
+		provider="MSDAORA"
+		data_source="pitEservice"
+	/>
+    
+	<Parameters>
+	
+		<Parameter 
+			caption="Дата начала:" 
+			name="ParamDateFrom" 
+			type="DATE" 
+			control_type="ComboBox"  
+			default_query = "DatesBegin" 
+			item_query = "DatesBegin"
+		/>
+			
+		<Parameter 
+			caption="Смена начала:" 
+			name="ParamShiftFrom" 
+			type="BSTR" 
+			control_type="ComboBox"  
+			default_query = "ShiftsFrom" 
+			item_query = "ShiftsFrom"
+		/>
+		
+		<Parameter 
+			caption="Дата окончания:" 
+			name="ParamDateTo" 
+			type="DATE" 
+			control_type="ComboBox"  
+			default_query = "DatesEnd" 
+			item_query = "DatesEnd"
+		/>
+			
+		<Parameter 
+			caption="Смена окончания:" 
+			name="ParamShiftTo" 
+			type="BSTR" 
+			control_type="ComboBox"  
+			default_query = "ShiftsTo" 
+			item_query = "ShiftsTo"
+		/>
+		
+		<Parameter 
+			caption="Тип:" 
+			name="ParamType" 
+			type="BSTR" 
+			control_type="ComboBox" 
+			default = "Самосвалы" 
+			items = "Самосвалы|Самосвалы(последний архив)|Бульдозеры|Бульдозеры(последний архив)|Экскаваторы|Экскаваторы(последний архив)"
+		/>  
+		
+    </Parameters>
+		
+	<Queries>
+		<Query 
+			name = "DatesBegin"
+		> 
+			select to_char( sysdate, 'dd.mm.yyyy') ParamDateFrom from dual
+			union all 
+			select to_char( sysdate-1, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-2, 'dd.mm.yyyy') ParamDate from dual			
+			union all 
+			select to_char( sysdate-3, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-4, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-5, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-6, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-7, 'dd.mm.yyyy') ParamDate from dual
+		</Query>
+		
+		<Query
+			name = "DatesEnd"
+		> 
+			select to_char( sysdate, 'dd.mm.yyyy') ParamDateTo from dual
+			union all 
+			select to_char( sysdate-1, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-2, 'dd.mm.yyyy') ParamDate from dual			
+			union all 
+			select to_char( sysdate-3, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-4, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-5, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-6, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-7, 'dd.mm.yyyy') ParamDate from dual
+		</Query>
+		
+		<Query
+			name = "ShiftsFrom"
+		> 
+			select 1 ParamShiftFrom from dual
+			union all
+			select 2 from dual
+		</Query>
+
+		<Query
+			name = "ShiftsTo"
+		> 
+			select 1 ParamShiftTo from dual
+			union all
+			select 2 from dual
+		</Query>				
+
+		<Query
+			name = "Header"
+			auto_open = "true"
+		> 
+			select 
+				'Количество записей за период '|| to_char(:ParamDateFrom,'dd.mm.yyyy')||' ' ||:ParamShiftFrom||' смены по '|| to_char(:ParamDateTo,'dd.mm.yyyy')||' '|| :ParamShiftTo||' смену для ' ||:ParamType||'' 
+					title 
+				from dual; 
+		</Query>
+			
+		<Query
+			name="GetQuery1"
+		>
+
+select
+	1 as KOL
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('штук')
+    
+from 
+    EVENTSTATEARCHIVE
+where 
+    (:ParamType = 'Самосвалы')
+    and (TIME between getpredefinedtimefrom('за указанную смену',:ParamShiftFrom,:ParamDateFrom) and getpredefinedtimeto('за указанную смену',:ParamShiftTo, :ParamDateTo))
+
+group by 
+    trunc(TIME)
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('штук')
+    
+from 
+    EVENTSTATEARCHIVE_HISTORY8
+where 
+    (:ParamType = 'Самосвалы(последний архив)')
+    and (TIME between getpredefinedtimefrom('за указанную смену',:ParamShiftFrom,:ParamDateFrom) and getpredefinedtimeto('за указанную смену',:ParamShiftTo, :ParamDateTo))
+
+group by 
+    trunc(TIME)
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('штук')
+    
+from 
+    AUXEVENTARCHIVE
+where 
+    (:ParamType = 'Бульдозеры')
+    and (TIME between getpredefinedtimefrom('за указанную смену',:ParamShiftFrom,:ParamDateFrom) and getpredefinedtimeto('за указанную смену',:ParamShiftTo, :ParamDateTo))
+
+group by 
+    trunc(TIME)
+
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('штук')
+    
+from 
+    AUXEVENTARCHIVE_HISTORY9
+where 
+    (:ParamType = 'Бульдозеры(последний архив)')
+    and (TIME between getpredefinedtimefrom('за указанную смену',:ParamShiftFrom,:ParamDateFrom) and getpredefinedtimeto('за указанную смену',:ParamShiftTo, :ParamDateTo))
+
+group by 
+    trunc(TIME)
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('штук')
+    
+from 
+    SHOVEVENTSTATEARCHIVE
+where 
+    (:ParamType = 'Экскаваторы')
+    and (TIME between getpredefinedtimefrom('за указанную смену',:ParamShiftFrom,:ParamDateFrom) and getpredefinedtimeto('за указанную смену',:ParamShiftTo, :ParamDateTo))
+
+group by 
+    trunc(TIME)
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('штук')
+    
+from 
+    SHOVEVENTSTATEARCHIVE_HISTORY3
+where 
+    (:ParamType = 'Экскаваторы(последний архив)')
+    and (TIME between getpredefinedtimefrom('за указанную смену',:ParamShiftFrom,:ParamDateFrom) and getpredefinedtimeto('за указанную смену',:ParamShiftTo, :ParamDateTo))
+
+group by 
+    trunc(TIME)
+
+	
+    
+order by 
+    SHIFTDATE desc
+		
+		</Query>
+		
+	</Queries>
+		
+	<ResourceFiles>
+		<ResourceFile
+			file="Modules\Vist.ExGridControl.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.Printing.v18.1.Core.dll"
+		/>
+		<ResourceFile
+			file="Modules\DevExpress.Utils.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraEditors.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraGrid.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.Data.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraLayout.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraBars.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraTreeList.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraPrinting.v18.1.dll"
+		/>			
+		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Data.v18.1.resources.dll"
+		/>		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraGrid.v18.1.resources.dll"
+		/>		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraLayout.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraEditors.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Utils.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Printing.v18.1.Core.resources.dll"
+		/>
+	</ResourceFiles>
+		
+</Resources>
+		
+<Window 
+	caption="Тест проверка последней записи"
+	width="800"
+	height="400"
+>
+	<Object
+		class="Vist.ExGridControl"
+		file="Modules\Vist.ExGridControl.dll"
+		header_query="Header"
+		read_only="true"
+		query="GetQuery1"
+		best_fit="true"
+		save_page_settings="true"
+		page_settings_guid="GetQuery1_guid"
+	>
+
+		<Column
+			title="Кол"
+			field="KOL"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="SHIFTDATE"
+			field="SHIFTDATE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="COUNT('штук')"
+			field="COUNT('штук')"
+			width="100"
+			visible="true"
+		/>
+
+		
+		<GroupSummary
+			type="sum"
+			field="KOL"
+			format="Сумма: {0:N0}"
+		/>
+		<GroupSummary
+			type="sum"
+			field="COUNT('штук')"
+			format="Сумма: {0:N0}"
+		/>
+		
+	</Object>
+</Window>
+	<Reports>
+	...
+	</Reports>
+</XRTL>

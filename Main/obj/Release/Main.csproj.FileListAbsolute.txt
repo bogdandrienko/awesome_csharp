@@ -1,0 +1,156 @@
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\Bogdan.pdb
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.Data.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.Printing.v18.1.Core.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.Utils.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.XtraBars.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.XtraEditors.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.XtraGrid.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.XtraLayout.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\DevExpress.XtraPrinting.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\IXrtlControl.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\IXrtlExplorer.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\Oracle.ManagedDataAccess.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.Forms.Form1.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.Forms.Form3.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.Forms.Form4.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.Forms.WaitForm1.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.Properties.Resources.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.Reports.Report1.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Main.csproj.GenerateResource.cache
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Main.csproj.CoreCompileInputs.cache
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Main.csproj.CopyComplete
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.pdb
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\Bogdan.dll.config
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\bin\Release\Bogdan.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\obj\Release\Bogdan.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.pdb
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Data.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Images.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Map.v18.1.Core.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Office.v18.1.Core.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Printing.v18.1.Core.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Utils.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraBars.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraEditors.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraGrid.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraLayout.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraMap.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraPrinting.v18.1.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\IXrtlControl.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\IXrtlExplorer.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\Oracle.ManagedDataAccess.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.AppContainer.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.Form1.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.Form3.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.Form4.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.WaitForm1.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Properties.Resources.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Reports.Bogdan_devexpress_monitoring_aux_stoppages.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Reports.Bogdan_report_count_records.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.GenerateResource.cache
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.CoreCompileInputs.cache
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.CopyComplete
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.pdb
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Reports.Bogdan_devexpress_oper_shov.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Reports.Bogdan_devexpress_oper_truck.resources
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.dll.config
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.dll
+C:\Users\AndrienkoBN\Downloads\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.exe.config
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.exe
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.pdb
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Data.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Images.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Map.v18.1.Core.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Office.v18.1.Core.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Printing.v18.1.Core.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Utils.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraBars.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraEditors.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraGrid.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraLayout.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraMap.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraPrinting.v18.1.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\IXrtlControl.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\IXrtlExplorer.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\Oracle.ManagedDataAccess.dll
+D:\ASD\VisualStudio\Bogdan\Main\bin\Release\Xceed.Wpf.Toolkit.dll
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.exe.config
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Визуализация показателей техники\Bogdan_custom_ShovPredictiveAnalyze.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Объёмы г.м. и производительность по машинистам экскаваторов\Bogdan_custom_ShovDriverPerfomance.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxReportStoppages.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxMonitoringStoppages.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Оперативный учёт по автосамосвалам и экскаваторам - объёмы, расстояния и тип породы\Bogdan_custom_OperPoroda.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Поиск техники в координатах\Bogdan_custom_FindTech.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main_Content.g.cs
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main_MarkupCompile.cache
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main_MarkupCompile.lref
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Визуализация показателей техники\Bogdan_custom_ShovPredictiveAnalyze.baml
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Объёмы г.м. и производительность по машинистам экскаваторов\Bogdan_custom_ShovDriverPerfomance.baml
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxReportStoppages.baml
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxMonitoringStoppages.baml
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Оперативный учёт по автосамосвалам и экскаваторам - объёмы, расстояния и тип породы\Bogdan_custom_OperPoroda.baml
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Поиск техники в координатах\Bogdan_custom_FindTech.baml
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.g.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.AppContainer.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.TechMonitoringForm3.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.TechMonitoringForm2.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.TechMonitoringForm1.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.AppWaitForm.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Properties.Resources.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Reports.Bogdan_custom_TruckTripTicket.resources
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.GenerateResource.cache
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.CoreCompileInputs.cache
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.CopyComplete
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.exe
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.pdb
+D:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csprojAssemblyReference.cache
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Визуализация показателей техники\Bogdan_custom_ShovPredictiveAnalyze.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Объёмы г.м. и производительность по машинистам экскаваторов\Bogdan_custom_ShovDriverPerfomance.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxReportStoppages.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxMonitoringStoppages.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Оперативный учёт по автосамосвалам и экскаваторам - объёмы, расстояния и тип породы\Bogdan_custom_OperPoroda.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Поиск техники в координатах\Bogdan_custom_FindTech.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main_MarkupCompile.cache
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main_MarkupCompile.lref
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.pdb
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.pdb
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Data.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Images.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Map.v18.1.Core.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Office.v18.1.Core.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Printing.v18.1.Core.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.Utils.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraBars.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraEditors.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraGrid.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraLayout.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraMap.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\DevExpress.XtraPrinting.v18.1.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\IXrtlControl.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\IXrtlExplorer.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\Oracle.ManagedDataAccess.dll
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\Xceed.Wpf.Toolkit.dll
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Визуализация показателей техники\Bogdan_custom_ShovPredictiveAnalyze.baml
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Объёмы г.м. и производительность по машинистам экскаваторов\Bogdan_custom_ShovDriverPerfomance.baml
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxReportStoppages.baml
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Простои бульдозеров\Bogdan_custom_AuxMonitoringStoppages.baml
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Оперативный учёт по автосамосвалам и экскаваторам - объёмы, расстояния и тип породы\Bogdan_custom_OperPoroda.baml
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Reports\Поиск техники в координатах\Bogdan_custom_FindTech.baml
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.g.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.AppContainer.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.TechMonitoringForm3.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.TechMonitoringForm2.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.TechMonitoringForm1.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Forms.AppWaitForm.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Properties.Resources.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.Reports.Bogdan_custom_TruckTripTicket.resources
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.GenerateResource.cache
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.CoreCompileInputs.cache
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.CopyComplete
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.exe.config
+F:\ASD\VisualStudio\Bogdan\Main\bin\Release\Main.exe
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.csproj.AssemblyReference.cache
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.exe.config
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main_Content.g.cs
+F:\ASD\VisualStudio\Bogdan\Main\obj\Release\Main.exe

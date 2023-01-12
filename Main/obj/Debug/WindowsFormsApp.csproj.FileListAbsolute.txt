@@ -1,0 +1,9 @@
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\obj\Debug\WindowsFormsApp.csprojAssemblyReference.cache
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.GenerateResource.cache
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\obj\Debug\WindowsFormsApp.csproj.CoreCompileInputs.cache
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\obj\Debug\Bogdan.Properties.Resources.resources
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\bin\Debug\Bogdan.dll.config
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\bin\Debug\Bogdan.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\bin\Debug\Bogdan.pdb
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\obj\Debug\Bogdan.dll
+D:\ASD\VisualStudio\Bogdan\WindowsFormsApp\WindowsFormsApp\obj\Debug\Bogdan.pdb

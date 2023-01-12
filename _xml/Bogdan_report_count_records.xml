@@ -1,0 +1,181 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<XRTL version = "1.0" title = "Оперативный учёт по автосамосвалам: объём и расстояние для типов пород">
+  <Resources>
+  	<Database username="dispatcher" password="disp" provider="MSDAORA" data_source="pitEservice"/>
+
+	
+	<Queries>
+		<Query name="database_DataTable_Report">
+
+select
+	1 as KOL
+	,VEHID as TEHID
+	,'Самосвалы' as TEHTYPE
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('Количество')
+    
+from 
+    EVENTSTATEARCHIVE
+where 
+    (:paramTypeTeh = 'все' or :paramTypeTeh = 'Самосвалы')
+    and (:paramTehId = 'все' or :paramTehId = VEHID)
+    and (TIME between getpredefinedtimefrom('за указанную смену',:paramShiftFrom,:paramDateFrom) and getpredefinedtimeto('за указанную смену',:paramShiftTo, :paramDateTo))
+
+group by 
+    trunc(TIME), VEHID
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,VEHID as TEHID
+	,'Самосвалы(последний архив)' as TEHTYPE
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('Количество')
+    
+from 
+    EVENTSTATEARCHIVE_HISTORY8
+where 
+    (:paramTypeTeh = 'все' or :paramTypeTeh = 'Самосвалы(последний архив)')
+    and (:paramTehId = 'все' or :paramTehId = VEHID)
+    and (TIME between getpredefinedtimefrom('за указанную смену',:paramShiftFrom,:paramDateFrom) and getpredefinedtimeto('за указанную смену',:paramShiftTo, :paramDateTo))
+
+group by 
+    trunc(TIME), VEHID
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,AUXID as TEHID
+	,'Бульдозеры' as TEHTYPE
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('Количество')
+    
+from 
+    AUXEVENTARCHIVE
+where 
+    (:paramTypeTeh = 'все' or :paramTypeTeh = 'Бульдозеры')
+    and (:paramTehId = 'все' or :paramTehId = AUXID)
+    and (TIME between getpredefinedtimefrom('за указанную смену',:paramShiftFrom,:paramDateFrom) and getpredefinedtimeto('за указанную смену',:paramShiftTo, :paramDateTo))
+
+group by 
+    trunc(TIME), AUXID
+
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,AUXID as TEHID
+	,'Бульдозеры(последний архив)' as TEHTYPE
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('Количество')
+    
+from 
+    AUXEVENTARCHIVE_HISTORY9
+where 
+    (:paramTypeTeh = 'все' or :paramTypeTeh = 'Бульдозеры(последний архив)')
+    and (:paramTehId = 'все' or :paramTehId = AUXID)
+    and (TIME between getpredefinedtimefrom('за указанную смену',:paramShiftFrom,:paramDateFrom) and getpredefinedtimeto('за указанную смену',:paramShiftTo, :paramDateTo))
+
+group by 
+    trunc(TIME), AUXID
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,SHOVID as TEHID
+	,'Экскаваторы' as TEHTYPE
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('Количество')
+    
+from 
+    SHOVEVENTSTATEARCHIVE
+where 
+    (:paramTypeTeh = 'все' or :paramTypeTeh = 'Экскаваторы')
+    and (:paramTehId = 'все' or :paramTehId = SHOVID)
+    and (TIME between getpredefinedtimefrom('за указанную смену',:paramShiftFrom,:paramDateFrom) and getpredefinedtimeto('за указанную смену',:paramShiftTo, :paramDateTo))
+
+group by 
+    trunc(TIME), SHOVID
+    
+
+
+union all
+
+
+
+select
+	1 as KOL
+	,SHOVID as TEHID
+	,'Экскаваторы(последний архив)' as TEHTYPE
+	,trunc(TIME) as SHIFTDATE
+	,COUNT('Количество')
+    
+from 
+    SHOVEVENTSTATEARCHIVE_HISTORY3
+where 
+    (:paramTypeTeh = 'все' or :paramTypeTeh = 'Экскаваторы(последний архив)')
+    and (:paramTehId = 'все' or :paramTehId = SHOVID)
+    and (TIME between getpredefinedtimefrom('за указанную смену',:paramShiftFrom,:paramDateFrom) and getpredefinedtimeto('за указанную смену',:paramShiftTo, :paramDateTo))
+
+group by 
+    trunc(TIME), SHOVID
+
+	
+    
+order by 
+    SHIFTDATE desc	  
+		  
+		</Query>
+	</Queries>
+
+	<ResourceFiles>
+		<ResourceFile file="Modules\Oracle.ManagedDataAccess.dll"/>
+		
+		<ResourceFile file="Modules\DevExpress.Data.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.Printing.v18.1.Core.dll"/>
+		<ResourceFile file="Modules\DevExpress.Utils.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraBars.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraEditors.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraGrid.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraPrinting.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraTreeList.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraLayout.v18.1.dll"/>
+
+		<ResourceFile file="Modules\ru\DevExpress.XtraGrid.v18.1.resources.dll"/>
+
+		<ResourceFile file="Modules\IXrtlControl.dll"/>
+		<ResourceFile file="Modules\IXrtlExplorer.dll"/>
+
+		
+		<ResourceFile file="Templates\Bogdan_report_count_records.xlsx"/>
+	</ResourceFiles>
+  </Resources>
+  
+  <Window caption="Оперативный учёт по автосамосвалам: объём и расстояние для типов пород" width="1200" height="700">
+  	<Object
+  		file      = "Modules\Bogdan_report_count_records.dll"
+  		class     = "Main.Reports.Bogdan_report_count_records"
+		template  = "templates\Bogdan_report_count_records.xlsx"
+  	/>
+  </Window>
+</XRTL>

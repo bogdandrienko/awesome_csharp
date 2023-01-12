@@ -1,0 +1,634 @@
+<?xml 
+	version="1.0"
+	encoding="windows-1251"
+?>
+
+<XRTL
+	version="1.0"
+	title="Простои внесённые автоматически"
+>
+<Resources>
+	<Database
+		username="dispatcher"
+		password="disp"
+		provider="MSDAORA"
+		data_source="pitEservice"
+	/>
+    
+	<Parameters>
+	
+		<Parameter 
+			caption="Дата начала:" 
+			name="ParamDateFrom" 
+			type="DATE" 
+			control_type="ComboBox"  
+			default_query = "DatesBegin" 
+			item_query = "DatesBegin"
+		/>
+			
+		<Parameter 
+			caption="Смена начала:" 
+			name="ParamShiftFrom" 
+			type="BSTR" 
+			control_type="ComboBox"  
+			default_query = "ShiftsFrom" 
+			item_query = "ShiftsFrom"
+		/>
+		
+		<Parameter 
+			caption="Дата окончания:" 
+			name="ParamDateTo" 
+			type="DATE" 
+			control_type="ComboBox"  
+			default_query = "DatesEnd" 
+			item_query = "DatesEnd"
+		/>
+			
+		<Parameter 
+			caption="Смена окончания:" 
+			name="ParamShiftTo" 
+			type="BSTR" 
+			control_type="ComboBox"  
+			default_query = "ShiftsTo" 
+			item_query = "ShiftsTo"
+		/>
+		
+		<Parameter 
+			caption="Тип:" 
+			name="ParamType" 
+			type="BSTR" 
+			control_type="ComboBox" 
+			default = "Вся техника" 
+			items = "Вся техника|Самосвалы|Бульдозеры|Экскаваторы"
+		/>  
+		
+    </Parameters>
+		
+	<Queries>
+		<Query 
+			name = "DatesBegin"
+		> 
+			select to_char( sysdate, 'dd.mm.yyyy') ParamDateFrom from dual
+			union all 
+			select to_char( sysdate-1, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-2, 'dd.mm.yyyy') ParamDate from dual			
+			union all 
+			select to_char( sysdate-3, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-4, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-5, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-6, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-7, 'dd.mm.yyyy') ParamDate from dual
+		</Query>
+		
+		<Query
+			name = "DatesEnd"
+		> 
+			select to_char( sysdate, 'dd.mm.yyyy') ParamDateTo from dual
+			union all 
+			select to_char( sysdate-1, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-2, 'dd.mm.yyyy') ParamDate from dual			
+			union all 
+			select to_char( sysdate-3, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-4, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-5, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-6, 'dd.mm.yyyy') ParamDate from dual
+			union all 
+			select to_char( sysdate-7, 'dd.mm.yyyy') ParamDate from dual
+		</Query>
+		
+		<Query
+			name = "ShiftsFrom"
+		> 
+			select 1 ParamShiftFrom from dual
+			union all
+			select 2 from dual
+		</Query>
+
+		<Query
+			name = "ShiftsTo"
+		> 
+			select 1 ParamShiftTo from dual
+			union all
+			select 2 from dual
+		</Query>				
+
+		<Query
+			name = "Header"
+			auto_open = "true"
+		> 
+			select 
+				'Простои внесённые автоматически за период '|| to_char(:ParamDateFrom,'dd.mm.yyyy')||' ' ||:ParamShiftFrom||' смены по '|| to_char(:ParamDateTo,'dd.mm.yyyy')||' '|| :ParamShiftTo||' смену для ' ||:ParamType||'' 
+					title 
+				from dual; 
+		</Query>
+			
+		<Query
+			name="GetQuery1"
+		>
+
+select 
+    1 as KOL
+    ,'Самосвалы' as TYPE_TABLE
+    ,VEHID
+    ,TIMESTOP
+    ,TIMEGO
+    ,GMTTIMESTOP
+    ,GMTTIMELATESTKNOWN
+    ,TIMELATESTKNOWN
+    ,AUTOSTOPID
+    ,USERSTOPID
+    ,IDLESTOPTYPE
+    ,IDLESTOPTYPEAUTO
+    ,XBEGIN
+    ,YBEGIN
+    ,XEND
+    ,YEND
+    ,SHOVIDAUTO
+    ,TIMELOAD
+    ,XLOAD
+    ,YLOAD
+    ,IDLESTOPTYPEUSER
+    ,SHIFTDATE
+    ,SHIFTNUM
+    ,ENGINEWORKTIME
+    ,NOTE
+    ,REPAIRPLACE
+    ,MOVINGTYPE
+    ,WEIGHTSTOP
+    ,WEIGHTGO
+    ,FUELSTOP
+    ,FUELGO
+    ,UNLOADIDAUTO
+    ,TIMEUNLOAD
+    ,XUNLOAD
+    ,YUNLOAD
+    ,TIMEREFUELSTART
+    ,XREFUEL
+    ,YREFUEL
+    ,PLANNED
+    ,DRVSTOPTYPE
+    ,EQUIPMENTID
+
+from 
+    DISPATCHER.IDLESTOPPAGES
+    
+where 
+    (:ParamType = 'Самосвалы' or :ParamType = 'Вся техника')
+    and TIMESTOP between dispatcher.GetPredefinedTimeFrom('за указанную смену', :ParamShiftFrom, :ParamDateFrom) and dispatcher.GetPredefinedTimeTo('за указанную смену', :ParamShiftTo, :ParamDateTo)
+
+
+
+union all
+
+
+
+select 
+    1 as KOL
+    ,'Бульдозеры' as TYPE_TABLE
+    ,VEHID
+    ,TIMESTOP
+    ,TIMEGO
+    ,GMTTIMESTOP
+    ,GMTTIMELATESTKNOWN
+    ,TIMELATESTKNOWN
+    ,AUTOSTOPID
+    ,USERSTOPID
+    ,IDLESTOPTYPE
+    ,IDLESTOPTYPEAUTO
+    ,XBEGIN
+    ,YBEGIN
+    ,XEND
+    ,YEND
+    ,SHOVIDAUTO
+    ,TIMELOAD
+    ,XLOAD
+    ,YLOAD
+    ,IDLESTOPTYPEUSER
+    ,SHIFTDATE
+    ,SHIFTNUM
+    ,ENGINEWORKTIME
+    ,NOTE
+    ,REPAIRPLACE
+    ,MOVINGTYPE
+    ,WEIGHTSTOP
+    ,WEIGHTGO
+    ,FUELSTOP
+    ,FUELGO
+    ,UNLOADIDAUTO
+    ,TIMEUNLOAD
+    ,XUNLOAD
+    ,YUNLOAD
+    ,TIMEREFUELSTART
+    ,XREFUEL
+    ,YREFUEL
+    ,PLANNED
+    ,DRVSTOPTYPE
+    ,EQUIPMENTID
+
+from 
+    DISPATCHER.IDLESTOPPAGES_AUX
+
+where 
+    (:ParamType = 'Бульдозеры' or :ParamType = 'Вся техника')
+    and TIMESTOP between dispatcher.GetPredefinedTimeFrom('за указанную смену', :ParamShiftFrom, :ParamDateFrom) and dispatcher.GetPredefinedTimeTo('за указанную смену', :ParamShiftTo, :ParamDateTo)
+
+
+
+union all
+
+
+
+select 
+    1 as KOL
+    ,'Экскаваторы' as TYPE_TABLE
+    ,VEHID
+    ,TIMESTOP
+    ,TIMEGO
+    ,GMTTIMESTOP
+    ,GMTTIMELATESTKNOWN
+    ,TIMELATESTKNOWN
+    ,AUTOSTOPID
+    ,USERSTOPID
+    ,IDLESTOPTYPE
+    ,IDLESTOPTYPEAUTO
+    ,XBEGIN
+    ,YBEGIN
+    ,XEND
+    ,YEND
+    ,SHOVIDAUTO
+    ,TIMELOAD
+    ,XLOAD
+    ,YLOAD
+    ,IDLESTOPTYPEUSER
+    ,SHIFTDATE
+    ,SHIFTNUM
+    ,ENGINEWORKTIME
+    ,NOTE
+    ,REPAIRPLACE
+    ,MOVINGTYPE
+    ,WEIGHTSTOP
+    ,WEIGHTGO
+    ,FUELSTOP
+    ,FUELGO
+    ,UNLOADIDAUTO
+    ,TIMEUNLOAD
+    ,XUNLOAD
+    ,YUNLOAD
+    ,TIMEREFUELSTART
+    ,XREFUEL
+    ,YREFUEL
+    ,PLANNED
+    ,DRVSTOPTYPE
+    ,0 EQUIPMENTID
+
+from 
+    DISPATCHER.IDLESTOPPAGES_SHOV
+
+where 
+    (:ParamType = 'Экскаваторы' or :ParamType = 'Вся техника')
+    and TIMESTOP between dispatcher.GetPredefinedTimeFrom('за указанную смену', :ParamShiftFrom, :ParamDateFrom) and dispatcher.GetPredefinedTimeTo('за указанную смену', :ParamShiftTo, :ParamDateTo)
+
+
+
+
+order by 
+    TIMESTOP desc
+      
+		</Query>
+		
+	</Queries>
+		
+	<ResourceFiles>
+		<ResourceFile
+			file="Modules\Vist.ExGridControl.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.Printing.v18.1.Core.dll"
+		/>
+		<ResourceFile
+			file="Modules\DevExpress.Utils.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraEditors.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraGrid.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.Data.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraLayout.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraBars.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraTreeList.v18.1.dll"
+		/>
+		<ResourceFile 
+			file="Modules\DevExpress.XtraPrinting.v18.1.dll"
+		/>			
+		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Data.v18.1.resources.dll"
+		/>		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraGrid.v18.1.resources.dll"
+		/>		
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraLayout.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.XtraEditors.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Utils.v18.1.resources.dll"
+		/>
+		<ResourceFile 
+			file="Modules\ru\DevExpress.Printing.v18.1.Core.resources.dll"
+		/>
+	</ResourceFiles>
+		
+</Resources>
+		
+<Window 
+	caption="Тест проверка последней записи"
+	width="800"
+	height="400"
+>
+	<Object
+		class="Vist.ExGridControl"
+		file="Modules\Vist.ExGridControl.dll"
+		header_query="Header"
+		read_only="true"
+		query="GetQuery1"
+		best_fit="true"
+		save_page_settings="true"
+		page_settings_guid="GetQuery1_guid"
+	>
+
+		<Column
+			title="Кол"
+			field="KOL"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TYPE_TABLE"
+			field="TYPE_TABLE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="VEHID"
+			field="VEHID"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIMESTOP"
+			field="TIMESTOP"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIMEGO"
+			field="TIMEGO"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="GMTTIMESTOP"
+			field="GMTTIMESTOP"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="GMTTIMELATESTKNOWN"
+			field="GMTTIMELATESTKNOWN"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIMELATESTKNOWN"
+			field="TIMELATESTKNOWN"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="AUTOSTOPID"
+			field="AUTOSTOPID"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="USERSTOPID"
+			field="USERSTOPID"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="IDLESTOPTYPE"
+			field="IDLESTOPTYPE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="IDLESTOPTYPEAUTO"
+			field="IDLESTOPTYPEAUTO"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="XBEGIN"
+			field="XBEGIN"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="YBEGIN"
+			field="YBEGIN"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="XEND"
+			field="XEND"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="YEND"
+			field="YEND"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="SHOVIDAUTO"
+			field="SHOVIDAUTO"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="XLOAD"
+			field="XLOAD"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="YLOAD"
+			field="YLOAD"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="IDLESTOPTYPEUSER"
+			field="IDLESTOPTYPEUSER"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="SHIFTDATE"
+			field="SHIFTDATE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="SHIFTNUM"
+			field="SHIFTNUM"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="ENGINEWORKTIME"
+			field="ENGINEWORKTIME"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="NOTE"
+			field="NOTE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="REPAIRPLACE"
+			field="REPAIRPLACE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="MOVINGTYPE"
+			field="MOVINGTYPE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="WEIGHTSTOP"
+			field="WEIGHTSTOP"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="WEIGHTGO"
+			field="WEIGHTGO"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="FUELSTOP"
+			field="FUELSTOP"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="FUELGO"
+			field="FUELGO"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="UNLOADIDAUTO"
+			field="UNLOADIDAUTO"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIMEUNLOAD"
+			field="TIMEUNLOAD"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="XUNLOAD"
+			field="XUNLOAD"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="YUNLOAD"
+			field="YUNLOAD"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="TIMEREFUELSTART"
+			field="TIMEREFUELSTART"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="XREFUEL"
+			field="XREFUEL"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="YREFUEL"
+			field="YREFUEL"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="PLANNED"
+			field="PLANNED"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="DRVSTOPTYPE"
+			field="DRVSTOPTYPE"
+			width="100"
+			visible="true"
+		/>
+		<Column
+			title="EQUIPMENTID"
+			field="EQUIPMENTID"
+			width="100"
+			visible="true"
+		/>
+
+
+		
+		<GroupSummary
+			type="sum"
+			field="KOL"
+			format="Сумма: {0:N0}"
+		/>
+		
+	</Object>
+</Window>
+	<Reports>
+	...
+	</Reports>
+</XRTL>

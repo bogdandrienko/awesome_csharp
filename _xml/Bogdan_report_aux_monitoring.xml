@@ -1,0 +1,67 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<XRTL version = "1.0" title = "Оперативный учёт по автосамосвалам: объём и расстояние для типов пород">
+  <Resources>
+  	<Database username="dispatcher" password="disp" provider="MSDAORA" data_source="pitEservice"/>
+
+	
+	<Queries>
+		<Query name="database_DataTable_Report">
+
+		
+		
+SELECT 'Бульдозеры'                      AS TYPE_TEH,
+       auxid                                       AS TECH_ID,
+       Max(TIME)                                   AS TIME,
+       Max(SPEED),
+       Round(( SYSDATE - Max(TIME) ) * 24, 2)      AS TIME_DIFFERENT_HOURS,
+       Round(( SYSDATE - Max(TIME) ) * 24 * 60, 2) AS TIME_DIFFERENT_MINUTES,
+       CASE
+         WHEN Round(( SYSDATE - Max(TIME) ) * 24, 2) > 48 THEN
+         'давно не было'
+         WHEN Round(( SYSDATE - Max(TIME) ) * 24, 2) > ( :paramTimeDifferent/60 ) THEN
+         'куда-то пропал'
+         ELSE 'в порядке'
+       END                                         STATUS
+FROM   auxeventstate
+GROUP  BY auxid,
+          TIME
+ORDER  BY time_different_minutes ASC 
+
+
+
+		  
+		</Query>
+	</Queries>
+
+	<ResourceFiles>
+		<ResourceFile file="Modules\Oracle.ManagedDataAccess.dll"/>
+		
+		<ResourceFile file="Modules\DevExpress.Data.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.Printing.v18.1.Core.dll"/>
+		<ResourceFile file="Modules\DevExpress.Utils.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraBars.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraEditors.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraGrid.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraPrinting.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraTreeList.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraLayout.v18.1.dll"/>
+
+		<ResourceFile file="Modules\ru\DevExpress.XtraGrid.v18.1.resources.dll"/>
+
+		<ResourceFile file="Modules\IXrtlControl.dll"/>
+		<ResourceFile file="Modules\IXrtlExplorer.dll"/>
+
+		
+		<ResourceFile file="Templates\Bogdan_report_aux_monitoring.xlsx"/>
+	</ResourceFiles>
+  </Resources>
+  
+  <Window caption="Оперативный учёт по автосамосвалам: объём и расстояние для типов пород" width="1200" height="700">
+  	<Object
+  		file      = "Modules\Bogdan_report_aux_monitoring.dll"
+  		class     = "Main.Reports.Bogdan_report_aux_monitoring"
+		template  = "templates\Bogdan_report_aux_monitoring.xlsx"
+  	/>
+  </Window>
+</XRTL>

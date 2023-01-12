@@ -1,0 +1,106 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+
+<XRTL version = "1.0" title = "Скоростной режим автосамосвалов">
+  <Resources>
+  	<Database username="dispatcher" password="disp" provider="MSDAORA" data_source="pitEservice"/>
+
+	
+	<Queries>
+		<Query name="database_DataTable_Report">
+
+		WITH b AS
+(SELECT
+GETPREDEFINEDTIMEFROM('за указанную смену',:paramShiftFrom,:paramDateFrom) SDATEFROM,
+GETPREDEFINEDTIMETO('за указанную смену',:paramShiftTo,:paramDateTo) SDATETO
+FROM DUAL
+)
+
+SELECT
+sel.*
+FROM
+(SELECT 
+Q.TEHTYPE TEHTYPE,
+Q.VEHID,
+sum(Q.trip) trips,
+ROUND(AVG(Q.AVSPEED),3) AVSPEED,
+ROUND(AVG(Q.AVSPEED_EMPTY),3) AVSPEED_EMPTY,
+ROUND((AVG(Q.AVSPEED)+AVG(Q.AVSPEED_EMPTY))/2,3) AVGSPEEDALL,
+ROUND(AVG(Q.LENGTH),3) LENGTH,
+ROUND(AVG(Q.UNLOADLENGTH),3) UNLOADLENGTH,
+ROUND((AVG(Q.LENGTH)+AVG(Q.UNLOADLENGTH))/2,3) AVGLENGTHALL
+FROM 
+(
+SELECT
+  s.*,
+  ROUND((s.TIMELOAD_NEXT - s.TIMEUNLOAD) * 24, 3) DIFF,
+  ROUND((SELECT AVG(SPEED) FROM DISPATCHER.EVENTSTATEARCHIVE_HISTORY8 WHERE VEHID = s.VEHID AND SPEED >= 5 AND TIME BETWEEN s.TIMEUNLOAD AND s.TIMELOAD_NEXT), 3) AVSPEED_EMPTY
+FROM (
+  SELECT
+    VEHID,
+    SHOVID,
+    TIMELOAD,
+    TIMEUNLOAD,
+    NVL(LEAD(TIMELOAD) OVER (PARTITION BY VEHID ORDER BY TIMELOAD),b.SDATETO) TIMELOAD_NEXT,
+    MOVETIME,
+    AVSPEED,
+    LENGTH,
+    UNLOADLENGTH,
+    1 trip,
+	'самосвалы' as TEHTYPE
+  FROM VEHTRIPS
+  INNER JOIN b ON TIMELOAD BETWEEN b.SDATEFROM AND b.SDATETO
+AND TIMEUNLOAD BETWEEN b.SDATEFROM AND b.SDATETO
+  WHERE EXTRACT(YEAR FROM SYSDATE)>=EXTRACT(YEAR FROM TIMELOAD) 
+  and shovid not like '%Неопр.%'
+  AND 
+  (TRIM(UPPER(worktype)) NOT LIKE ('%ВКП СКАЛА%')
+       AND TRIM(UPPER(worktype)) NOT LIKE ('%ВКП ЩЕБЕНЬ%')
+       AND TRIM(UPPER(worktype)) NOT LIKE ('%ВКП%')
+	   AND TRIM(UPPER(worktype)) NOT LIKE ('%ПСП%')
+       AND TRIM(UPPER (unloadid)) NOT LIKE ('%АВТОДОРОГА%')
+       AND TRIM(UPPER (unloadid)) NOT LIKE ('%ВНЕ ОТВАЛА%')
+       AND TRIM(UPPER (unloadid)) NOT LIKE ('%ДОРОГА ОБЩЕГО ПОЛЬЗОВАНИЯ%')
+       AND TRIM(UPPER (worktype)) NOT LIKE ('%ВСП%')
+	   AND TRIM(UPPER (worktype)) NOT LIKE ('%СНЕГ%')
+	   )
+  ORDER BY LENGTH(VEHID), VEHID, TIMELOAD, TEHTYPE
+) s
+) Q
+GROUP BY Q.VEHID, TEHTYPE
+ORDER BY VEHID, LENGTH(VEHID))
+sel
+
+		</Query>
+	</Queries>
+
+	<ResourceFiles>
+		<ResourceFile file="Modules\Oracle.ManagedDataAccess.dll"/>
+		
+		<ResourceFile file="Modules\DevExpress.Data.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.Printing.v18.1.Core.dll"/>
+		<ResourceFile file="Modules\DevExpress.Utils.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraBars.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraEditors.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraGrid.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraPrinting.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraTreeList.v18.1.dll"/>
+		<ResourceFile file="Modules\DevExpress.XtraLayout.v18.1.dll"/>
+
+		<ResourceFile file="Modules\ru\DevExpress.XtraGrid.v18.1.resources.dll"/>
+
+		<ResourceFile file="Modules\IXrtlControl.dll"/>
+		<ResourceFile file="Modules\IXrtlExplorer.dll"/>
+
+		
+		<ResourceFile file="Templates\Bogdan_devexpress_dumptruck_speed.xlsx"/>
+	</ResourceFiles>
+  </Resources>
+  
+  <Window width="1200" height="700">
+  	<Object
+  		file      = "Modules\Bogdan_devexpress_dumptruck_speed.dll"
+  		class     = "NamespaceReports.NamespaceMain.ClassReport"
+		template  = "templates\Bogdan_devexpress_dumptruck_speed.xlsx"
+  	/>
+  </Window>
+</XRTL>
